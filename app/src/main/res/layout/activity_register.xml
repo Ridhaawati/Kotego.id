@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/back"
+            app:tint="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/btn_help"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_setting"
+            app:tint="#FFFFFF" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/kotego"
+        android:layout_marginBottom="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Daftar sekarang"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <EditText
+        android:id="@+id/edtNama"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="#ffffff"
+        android:drawablePadding="12dp"
+        android:hint="Nama Pengguna"
+        android:inputType="textPersonName"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999" />
+
+    <EditText
+        android:id="@+id/edtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="#ffff"
+        android:drawablePadding="12dp"
+        android:hint="Nomor Telepon"
+        android:inputType="phone"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:background="#ffff"
+        android:drawablePadding="12dp"
+        android:hint="Kata Sandi"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Daftar"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="Dengan masuk disini, kamu menyetujui syarat &amp; Ketentuan serta kebijakan privasi Kotego"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        android:layout_marginBottom="40dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sudah punya akun? "
+            android:textColor="#CCCCCC"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masuk"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+</LinearLayout>

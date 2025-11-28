@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KotegoId</string>
+    <string name="title_activity_buttom_nav">Buttom_nav</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
