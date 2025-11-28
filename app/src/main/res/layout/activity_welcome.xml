@@ -21,12 +21,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:background="@drawable/Miepedas"
+                android:background="#F5F5F5"
                 android:paddingBottom="0dp">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/Miepedas"
+                    android:background="@drawable/miepedas"
                     android:scaleType="centerCrop" />
 
                 <androidx.cardview.widget.CardView
@@ -132,7 +132,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/Miepedas" />
+                            android:src="@drawable/miepedas" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -147,7 +147,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/Miepedas" />
+                            android:src="@drawable/miepedas" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -162,7 +162,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/Miepedas" />
+                            android:src="@drawable/miepedas" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -177,7 +177,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/Miepedas" />
+                            android:src="@drawable/miepedas" />
                     </androidx.cardview.widget.CardView>
 
                 </GridLayout>
@@ -219,7 +219,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                android:tint="#000000" />
+                android:tint="#000000"
+                tools:ignore="UseAppTint" />
 
             <TextView
                 android:id="@+id/text_home"
@@ -248,7 +249,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_note"
-                android:tint="#888888" />
+                app:tint="#888888" />
 
             <TextView
                 android:id="@+id/text_pesanan"
@@ -277,7 +278,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_cart"
-                android:tint="#888888" />
+                app:tint="#888888" />
 
             <TextView
                 android:id="@+id/text_keranjang"
@@ -306,7 +307,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_profile"
-                android:tint="#888888" />
+                app:tint="#888888" />
 
             <TextView
                 android:id="@+id/text_profil"
