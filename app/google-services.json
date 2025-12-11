@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366573290452",
+    "project_id": "kotegoapp",
+    "storage_bucket": "kotegoapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366573290452:android:0b263e0af26cbf71888c41",
+        "android_client_info": {
+          "package_name": "Kotego.id"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgfVzNshHjZRxRtGMr90YuZCk40yGM3tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
