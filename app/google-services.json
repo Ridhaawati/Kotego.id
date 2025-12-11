@@ -1,15 +1,21 @@
 {
   "project_info": {
+    "project_number": "71901983596",
+    "project_id": "kotegoid",
+    "storage_bucket": "kotegoid.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:71901983596:android:5d581c5a85806cde2f3949",
         "android_client_info": {
+          "package_name": "com.example.kotegoid"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
+          "current_key": "AIzaSyB0x4mUEgOgjOml8k7R_evqgN1nIx2-RF0"
         }
       ],
       "services": {
