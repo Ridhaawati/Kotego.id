@@ -9,9 +9,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
 
@@ -25,34 +26,65 @@ public class Login extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        // Hubungkan ID dari layout XML
+        // Hubungkan dengan ID layout
         edtEmail = findViewById(R.id.edPhone);
         edtPassword = findViewById(R.id.edtpassword);
         btnLogin = findViewById(R.id.btnLogin);
 
-        // Ketika tombol login diklik
         btnLogin.setOnClickListener(v -> {
-            String email = edtEmail.getText().toString().trim();
-            String password = edtPassword.getText().toString().trim();
+            String emailInput = edtEmail.getText().toString().trim();
+            String passInput = edtPassword.getText().toString().trim();
 
-            if (email.isEmpty() || password.isEmpty()) {
+            // Validasi input
+            if (emailInput.isEmpty() || passInput.isEmpty()) {
                 Toast.makeText(Login.this, "Isi email dan password!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Nanti disini kamu bisa tambah request ke backend / database
-            Toast.makeText(Login.this, "Login berhasil", Toast.LENGTH_SHORT).show();
+            // Ambil data dari Firebase
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
 
-            // Pindah ke Home
-            Intent intent = new Intent(Login.this, Home.class);
-            startActivity(intent);
-        });
+            db.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
 
-        // Untuk edge-to-edge padding
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+                    boolean found = false;
+
+                    // Loop semua user didalam node "users"
+                    for (DataSnapshot userSnapshot : task.getResult().getChildren()) {
+
+                        String dbEmail = userSnapshot.child("email").getValue(String.class);
+                        String dbPassword = userSnapshot.child("password").getValue(String.class);
+                        String role = userSnapshot.child("role").getValue(String.class);
+
+                        // Cek kecocokan
+                        if (emailInput.equals(dbEmail) && passInput.equals(dbPassword)) {
+                            found = true;
+
+                            Toast.makeText(Login.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
+
+                            // Arahkan berdasarkan role
+                            if ("admin".equals(role)) {
+                                startActivity(new Intent(Login.this, Home.class));
+                            } else if ("customer".equals(role)) {
+                                startActivity(new Intent(Login.this, Home.class));
+                            } else {
+                                Toast.makeText(Login.this, "Role tidak dikenal!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            finish();
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        Toast.makeText(Login.this, "Email atau password salah!", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(Login.this, "Gagal mengambil data Firebase!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 }

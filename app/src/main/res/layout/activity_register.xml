@@ -7,8 +7,9 @@
     android:background="#000000"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".RegisterActivity">
+    tools:context=".Register">
 
+    <!-- Header -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,12 +32,14 @@
             app:tint="#FFFFFF" />
     </RelativeLayout>
 
+    <!-- Logo -->
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/kotego"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,15 +48,15 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="32dp" />
 
+    <!-- NAMA -->
     <EditText
         android:id="@+id/edtNama"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="#ffffff"
-        android:drawablePadding="12dp"
         android:hint="Nama Pengguna"
         android:inputType="textPersonName"
         android:paddingStart="16dp"
@@ -61,34 +64,49 @@
         android:textColor="#000000"
         android:textColorHint="#999999" />
 
+    <!-- EMAIL -->
     <EditText
-        android:id="@+id/edtPhone"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
-        android:background="#ffff"
-        android:drawablePadding="12dp"
-        android:hint="Nomor Telepon"
-        android:inputType="phone"
+        android:background="#ffffff"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="#000000"
         android:textColorHint="#999999" />
 
+    <!-- PASSWORD -->
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="#ffff"
-        android:drawablePadding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="#ffffff"
         android:hint="Kata Sandi"
-        android:textColor="#000000"
-        android:textColorHint="#999999"
         android:inputType="textPassword"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:paddingEnd="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999" />
 
+    <!-- CONFIRM PASSWORD -->
+    <EditText
+        android:id="@+id/edtConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:background="#ffffff"
+        android:hint="Konfirmasi Kata Sandi"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999" />
+
+    <!-- BUTTON REGISTER -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
@@ -98,28 +116,26 @@
         android:textColor="#000000"
         android:textStyle="bold"
         android:textSize="16sp"
-        app:cornerRadius="8dp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        app:cornerRadius="8dp" />
 
+    <!-- Disclaimer -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:text="Dengan masuk disini, kamu menyetujui syarat &amp; Ketentuan serta kebijakan privasi Kotego"
+        android:text="Dengan masuk disini, kamu menyetujui syarat dan Ketentuan serta kebijakan privasi Kotego"
         android:textColor="#CCCCCC"
         android:textSize="12sp"
-        android:layout_marginBottom="40dp"/>
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
 
+    <!-- Sudah punya akun? -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="24dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,7 +153,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:clickable="true"
-            android:focusable="true"/>
+            android:focusable="true" />
     </LinearLayout>
 
 </LinearLayout>

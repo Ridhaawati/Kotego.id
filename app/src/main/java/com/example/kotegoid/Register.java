@@ -2,21 +2,22 @@ package com.example.kotegoid;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
     EditText edtNama, edtEmail, edtPassword, edtConfirmPassword;
-    Button btnDaftar, btnPunyaAkun;
+    Button btnDaftar;
+    TextView btnPunyaAkun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +25,22 @@ public class Register extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
-        // Hubungkan id dengan XML
+        // Hubungkan ID XML
         edtNama = findViewById(R.id.edtNama);
+        edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
+        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnDaftar = findViewById(R.id.btnRegister);
-        View textlogin = findViewById(R.id.text_login);
+        btnPunyaAkun = findViewById(R.id.text_login); // ini TextView
 
-        // Tombol daftar
+        // Tombol daftar ditekan
         btnDaftar.setOnClickListener(v -> {
             String nama = edtNama.getText().toString().trim();
             String email = edtEmail.getText().toString().trim();
             String password = edtPassword.getText().toString().trim();
             String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
-            // Validasi form
+            // Validasi
             if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(Register.this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show();
                 return;
@@ -48,27 +51,32 @@ public class Register extends AppCompatActivity {
                 return;
             }
 
-            // Sukses (nanti diganti request API)
-            Toast.makeText(Register.this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
+            // Koneksi Firebase
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
 
-            // Pindah ke halaman Login
-            Intent intent = new Intent(Register.this, Login.class);
-            startActivity(intent);
-            finish();
+            // Buat ID unik
+            String userId = db.push().getKey();
+
+            // Model user
+            UserData user = new UserData(nama, email, "customer");
+
+            // Simpan ke Firebase
+            assert userId != null;
+            db.child(userId).setValue(user).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(Register.this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Register.this, Login.class));
+                    finish();
+                } else {
+                    Toast.makeText(Register.this, "Gagal menyimpan data!", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
-        // Jika sudah punya akun → balik ke login
+        // Tombol "Masuk"
         btnPunyaAkun.setOnClickListener(v -> {
-            Intent intent = new Intent(Register.this, Login.class);
-            startActivity(intent);
+            startActivity(new Intent(Register.this, Login.class));
             finish();
-        });
-
-        // Padding untuk edge-to-edge
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
         });
     }
 }
