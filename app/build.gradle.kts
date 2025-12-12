@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.kotegoid"
-        minSdk = 22
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
