@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotegoId">
         <activity
+            android:name=".HomeAdmin"
+            android:exported="false" />
+        <activity
             android:name=".ProductDescription"
             android:exported="false" />
         <activity

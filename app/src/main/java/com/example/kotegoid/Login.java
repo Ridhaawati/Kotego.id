@@ -2,8 +2,10 @@ package com.example.kotegoid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ public class Login extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
     Button btnLogin;
+    TextView txtRegister;
     FirebaseAuth auth;
 
     @Override
@@ -28,9 +31,17 @@ public class Login extends AppCompatActivity {
         edtEmail = findViewById(R.id.edPhone);
         edtPassword = findViewById(R.id.edtpassword);
         btnLogin = findViewById(R.id.btnLogin);
+        txtRegister = findViewById(R.id.tv_register);
 
         auth = FirebaseAuth.getInstance();
 
+        // Click listener untuk pindah ke Register
+        txtRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
+        });
+
+        // Click listener untuk login
         btnLogin.setOnClickListener(v -> {
             String email = edtEmail.getText().toString().trim();
             String password = edtPassword.getText().toString().trim();
@@ -65,7 +76,7 @@ public class Login extends AppCompatActivity {
 
                                     // Arahkan berdasarkan role
                                     if (role.equals("admin")) {
-                                        startActivity(new Intent(Login.this, Home.class));
+                                        startActivity(new Intent(Login.this, HomeAdmin.class));
                                     } else if (role.equals("customer")) {
                                         startActivity(new Intent(Login.this, Home.class));
                                     } else {
