@@ -1,15 +1,17 @@
 package com.example.kotegoid;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,73 +20,81 @@ public class Login extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
     Button btnLogin;
+    TextView txtRegister;
+    FirebaseAuth auth;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        // Hubungkan dengan ID layout
         edtEmail = findViewById(R.id.edPhone);
         edtPassword = findViewById(R.id.edtpassword);
         btnLogin = findViewById(R.id.btnLogin);
+        txtRegister = findViewById(R.id.tv_register);
 
+        auth = FirebaseAuth.getInstance();
+
+        // Click listener untuk pindah ke Register
+        txtRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
+        });
+
+        // Click listener untuk login
         btnLogin.setOnClickListener(v -> {
-            String emailInput = edtEmail.getText().toString().trim();
-            String passInput = edtPassword.getText().toString().trim();
+            String email = edtEmail.getText().toString().trim();
+            String password = edtPassword.getText().toString().trim();
 
-            // Validasi input
-            if (emailInput.isEmpty() || passInput.isEmpty()) {
-                Toast.makeText(Login.this, "Isi email dan password!", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(Login.this, "Email dan password harus diisi!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Ambil data dari Firebase
-            DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
+            // Login Firebase Auth
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
 
-            db.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
+                        if (task.isSuccessful()) {
 
-                    boolean found = false;
+                            FirebaseUser user = auth.getCurrentUser();
+                            String uid = user.getUid();
 
-                    // Loop semua user didalam node "users"
-                    for (DataSnapshot userSnapshot : task.getResult().getChildren()) {
+                            // Ambil role dari Realtime Database
+                            DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(uid);
 
-                        String dbEmail = userSnapshot.child("email").getValue(String.class);
-                        String dbPassword = userSnapshot.child("password").getValue(String.class);
-                        String role = userSnapshot.child("role").getValue(String.class);
+                            db.get().addOnCompleteListener(dataTask -> {
+                                if (dataTask.isSuccessful()) {
+                                    DataSnapshot snapshot = dataTask.getResult();
 
-                        // Cek kecocokan
-                        if (emailInput.equals(dbEmail) && passInput.equals(dbPassword)) {
-                            found = true;
+                                    String role = snapshot.child("role").getValue(String.class);
 
-                            Toast.makeText(Login.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
+                                    if (role == null) {
+                                        Toast.makeText(Login.this, "Role tidak ditemukan!", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
 
-                            // Arahkan berdasarkan role
-                            if ("admin".equals(role)) {
-                                startActivity(new Intent(Login.this, Home.class));
-                            } else if ("customer".equals(role)) {
-                                startActivity(new Intent(Login.this, Home.class));
-                            } else {
-                                Toast.makeText(Login.this, "Role tidak dikenal!", Toast.LENGTH_SHORT).show();
-                            }
+                                    // Arahkan berdasarkan role
+                                    if (role.equals("admin")) {
+                                        startActivity(new Intent(Login.this, HomeAdmin.class));
+                                    } else if (role.equals("customer")) {
+                                        startActivity(new Intent(Login.this, Home.class));
+                                    } else {
+                                        Toast.makeText(Login.this, "Role tidak valid", Toast.LENGTH_SHORT).show();
+                                    }
 
-                            finish();
-                            break;
+                                    finish();
+
+                                } else {
+                                    Toast.makeText(Login.this, "Gagal mengambil role!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        } else {
+                            Toast.makeText(Login.this, "Email atau password salah!", Toast.LENGTH_SHORT).show();
                         }
-                    }
 
-                    if (!found) {
-                        Toast.makeText(Login.this, "Email atau password salah!", Toast.LENGTH_SHORT).show();
-                    }
-
-                } else {
-                    Toast.makeText(Login.this, "Gagal mengambil data Firebase!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
+                    });
         });
     }
 }
