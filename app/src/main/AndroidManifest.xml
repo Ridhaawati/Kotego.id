@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- TAMBAHKAN PERMISSIONS INI -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +21,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotegoId">
         <activity
+            android:name=".TambahMenu"
+            android:exported="false" />
+        <activity
+            android:name=".MenuManajemenAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Profil"
+            android:exported="false" />
+        <activity
+            android:name=".BuktiPesanan"
+            android:exported="false" />
+        <activity
+            android:name=".RiwayatPesanan"
+            android:exported="false" />
+        <activity
+            android:name=".DetailPesanan"
+            android:exported="false" />
+        <activity
+            android:name=".Pembayaran"
+            android:exported="false" />
+        <activity
+            android:name=".Order"
+            android:exported="false" />
+        <activity
             android:name=".HomeAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Keranjang"
             android:exported="false" />
         <activity
             android:name=".ProductDescription"
@@ -30,10 +69,6 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Buttom_nav"
-            android:exported="false"
-            android:label="@string/title_activity_buttom_nav" />
-        <activity
             android:name=".Welcome"
             android:exported="false" />
         <activity
@@ -47,7 +82,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- FileProvider untuk Share & Download -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

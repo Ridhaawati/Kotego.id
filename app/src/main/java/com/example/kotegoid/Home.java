@@ -1,29 +1,53 @@
 package com.example.kotegoid;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends AppCompatActivity {
+
+    private RecyclerView recyclerViewMenu;
+    private MenuAdapter menuAdapter;
+    private List<MenuItem> menuList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        // Gunakan root view default (tidak perlu id "main")
-        ViewCompat.setOnApplyWindowInsetsListener(
-                getWindow().getDecorView().findViewById(android.R.id.content),
-                (v, insets) -> {
-                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                    return insets;
-                }
-        );
+        // Inisialisasi RecyclerView
+        recyclerViewMenu = findViewById(R.id.recyclerViewMenu);
+        recyclerViewMenu.setLayoutManager(new GridLayoutManager(this, 2)); // 2 kolom
+
+        // Buat data menu
+        menuList = new ArrayList<>();
+        menuList.add(new MenuItem("Beef Cah Cabe Ijo", R.drawable.miepedas));
+        menuList.add(new MenuItem("Ayam Chili Padi", R.drawable.miepedas));
+        menuList.add(new MenuItem("Udang Sambal Bakar", R.drawable.miepedas));
+        menuList.add(new MenuItem("Ayam Geprek", R.drawable.miepedas));
+        menuList.add(new MenuItem("Menu Lanjutan 1", R.drawable.miepedas));
+        menuList.add(new MenuItem("Menu Lanjutan 2", R.drawable.miepedas));
+
+        // Set adapter
+        menuAdapter = new MenuAdapter(menuList);
+        recyclerViewMenu.setAdapter(menuAdapter);
+
+        // Navigasi ke Keranjang
+        LinearLayout navKeranjang = findViewById(R.id.nav_keranjang);
+        navKeranjang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Keranjang.class);
+                startActivity(intent);
+            }
+        });
     }
 }

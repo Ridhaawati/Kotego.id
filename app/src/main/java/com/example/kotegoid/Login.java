@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
                                     if (role.equals("admin")) {
                                         startActivity(new Intent(Login.this, HomeAdmin.class));
                                     } else if (role.equals("customer")) {
-                                        startActivity(new Intent(Login.this, Home.class));
+                                        startActivity(new Intent(Login.this, Kategori.class));
                                     } else {
                                         Toast.makeText(Login.this, "Role tidak valid", Toast.LENGTH_SHORT).show();
                                     }

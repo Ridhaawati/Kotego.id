@@ -1,228 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#F5F5F5">
 
-    <!-- Scrollable Content -->
     <ScrollView
-        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomButtons"
-        android:fillViewport="true">
+        android:layout_above="@+id/bottomButtons">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Toolbar -->
+            <!-- Header dengan Gambar -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@color/black"
-                android:padding="12dp">
-
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol kembali"
-                    android:src="@drawable/back"
-                    app:tint="@color/white" />
-
-                <ImageButton
-                    android:id="@+id/btnSearch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_toStartOf="@id/btnShare"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol pencarian"
-                    android:src="@drawable/ic_favorite_border"
-                    app:tint="@color/white" />
-
-                <ImageButton
-                    android:id="@+id/btnShare"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_toStartOf="@id/btnCart"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol bagikan"
-                    android:src="@drawable/ic_chat"
-                    app:tint="@color/white" />
-
-                <ImageButton
-                    android:id="@+id/btnCart"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_toStartOf="@id/btnMenu"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol keranjang"
-                    android:src="@drawable/ic_cart"
-                    app:tint="@color/white" />
-
-                <ImageButton
-                    android:id="@+id/btnMenu"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol menu"
-                    android:src="@drawable/ic_menu"
-                    app:tint="@color/white" />
-            </RelativeLayout>
-
-            <!-- Product Image -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                android:layout_height="400dp">
 
                 <ImageView
-                    android:id="@+id/ivProductImage"
+                    android:id="@+id/detailMenuImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="Gambar produk"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/download" />
-            </androidx.cardview.widget.CardView>
+                    android:src="@drawable/miepedas" />
 
-            <!-- Product Info -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp">
-
-                <TextView
-                    android:id="@+id/tvProductName"
-                    android:layout_width="wrap_content"
+                <!-- Top Bar dengan Icons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/btnFavorite"
-                    android:text="Ayam Chili Padi"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:background="#80000000"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-                <ImageButton
-                    android:id="@+id/btnFavorite"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Tombol favorit"
-                    android:src="@drawable/ic_favorite_border"
-                    app:tint="@color/black" />
+                    <!-- Back Button -->
+                    <ImageView
+                        android:id="@+id/btnBack"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_revert"
+                        android:tint="#FFFFFF"
+                        android:padding="4dp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <!-- Search Icon -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        android:tint="#FFFFFF"
+                        android:layout_marginEnd="12dp"
+                        android:padding="4dp" />
+
+                    <!-- Share Icon -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_share"
+                        android:tint="#FFFFFF"
+                        android:layout_marginEnd="12dp"
+                        android:padding="4dp" />
+
+                    <!-- Cart Icon -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_cart"
+                        android:tint="#FFFFFF"
+                        android:layout_marginEnd="12dp"
+                        android:padding="4dp" />
+
+                    <!-- Menu Icon -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_more"
+                        android:tint="#FFFFFF"
+                        android:padding="4dp" />
+
+                </LinearLayout>
+
             </RelativeLayout>
 
-            <!-- Price -->
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Rp. 25.000"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <!-- Divider -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="#E0E0E0" />
-
-            <!-- Description Title -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Deskripsi :"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <!-- Description Content -->
-            <TextView
-                android:id="@+id/tvDescription"
+            <!-- Content Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="24dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Ayam Chili Padi adalah hidangan khas yang terkenal dari Malaysia, dikenal karena cita rasanya yang pedas, gurih, dan menggugah selera. Hidangan ini menggunakan ayam yang digoreng hingga renyah, kemudian dibalut dengan saus chili padi yang khas. Saus ini terbuat dari campuran cabai rawit, bawang putih, dan sedikit pemanis untuk menyeimbangkan rasa pedas yang kuat. Ayam Chili Padi sering disajikan dengan nasi putih dan acar untuk menambah kesegaran.\n\nCiri khas utama dari Ayam Chili Padi adalah saus pedas yang sangat mantap, membuatnya cocok bagi pencinta makanan pedas. Biasanya disajikan bersama nasi putih hangat, timun, dan tomat yang akan menambah kesegaran pada setiap gigitan."
-                android:textColor="#666666"
-                android:textSize="14sp" />
+                android:layout_marginTop="-30dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Nama Menu & Love Icon -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/detailMenuName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ayam Chili Padi"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@+id/btnLove" />
+
+                        <ImageView
+                            android:id="@+id/btnLove"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_favorite_border"
+                            android:tint="#1A1919"
+                            android:padding="8dp" />
+
+                    </RelativeLayout>
+
+                    <!-- Harga -->
+                    <TextView
+                        android:id="@+id/detailMenuPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rp. 25.000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E0E0E0"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Label Deskripsi -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Deskripsi :"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <!-- Isi Deskripsi -->
+                    <TextView
+                        android:id="@+id/detailMenuDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ayam Cili Padi adalah hidangan khas yang terkenal dari Malaysia, dikenal karena cita rasanya yang pedasnya, gurih, dan menggugah selera. Hidangan ini menampilkan potongan ayam yang dimasak hingga renyah, lalu disiram dengan sambal khas yang terbuat dari cili padi (cabai rawit), bawang merah, bawang putih, dan berbagai rempah pilihan lainnya. Sambalnya memberikan rasa pedas yang tajam dengan aroma wangi dan kuat, ditambah sentuhan rasa asam Ciri khas utama dari Ayam Cili Padi adalah rasa pedas menyengat namun nikmat, membuatnya cocok bagi pencinta makanan pedas. Biasanya disajikan bersama nasi putih hangat, agar rasa pedasnya bisa dinikmati secara optimal."
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
+
     </ScrollView>
 
-    <!-- Bottom Action Buttons (Fixed) -->
+    <!-- Bottom Buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:elevation="8dp"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center">
 
-        <!-- Button Chat -->
-        <ImageButton
-            android:id="@+id/btnChat"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/circle_button_white"
-            android:contentDescription="Tombol chat"
-            android:src="@drawable/ic_chat"
-            app:tint="@color/black" />
+        <!-- Icon Chat -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="#000000"
+            android:layout_marginEnd="12dp">
 
-        <!-- Button Keranjang -->
-        <ImageButton
-            android:id="@+id/btnAddCart"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/circle_button_white"
-            android:contentDescription="Tambah ke keranjang"
-            android:src="@drawable/ic_cart"
-            app:tint="@color/black" />
+            <ImageView
+                android:id="@+id/btnChat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/stat_notify_chat"
+                android:tint="#FFFFFF"
+                android:padding="12dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Icon Cart -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="#000000"
+            android:layout_marginEnd="12dp">
+
+            <ImageView
+                android:id="@+id/btnCart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_cart"
+                android:tint="#FFFFFF"
+                android:padding="12dp" />
+
+        </androidx.cardview.widget.CardView>
 
         <!-- Button Pesan Sekarang -->
         <Button
-            android:id="@+id/btnOrderNow"
+            android:id="@+id/btnOrder"
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="#000000"
             android:backgroundTint="#000000"
             android:text="Pesan Sekarang"
-            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textColorLink="#000000"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:cornerRadius="5dp" />
+
     </LinearLayout>
+
 </RelativeLayout>

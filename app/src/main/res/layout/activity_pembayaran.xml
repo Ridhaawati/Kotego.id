@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- TOOLBAR -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/white"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:contentDescription="@string/back_button"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Pembayaran"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- CARD BAYAR SEKARANG -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bayar Sekarang"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unggah bukti pembayaran anda untuk\nmenyelesaikan pemesanan"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cafe Kotego"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- FOTO QR CODE (STATIS) -->
+                    <ImageView
+                        android:id="@+id/imgQRCode"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/qr_payment"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/qr_code"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Setelah melakukan pembayaran, unggah\nbukti pembayaran agar pesanan di proses"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- BUTTON UNGGAH BUKTI -->
+            <Button
+                android:id="@+id/btnUnggahBukti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Unggah Bukti Pembayaran"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- BUTTON KIRIM -->
+    <Button
+        android:id="@+id/btnKirim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kirim"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#000000"
+        android:padding="16dp"
+        android:layout_margin="16dp"/>
+
+</LinearLayout>

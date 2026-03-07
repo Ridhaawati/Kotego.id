@@ -1,7 +1,29 @@
 <resources>
-    <string name="app_name">KotegoId</string>
-    <string name="title_activity_buttom_nav">Buttom_nav</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Kotegoid</string>
+
+    <!-- Order Activity -->
+    <string name="menu_image">Menu Image</string>
+    <string name="nama_menu">Nama Menu</string>
+    <string name="jumlah_default">Jumlah : 1</string>
+    <string name="rp_0">Rp 0</string>
+    <string name="rp_25000">Rp 25.000</string>
+    <string name="deskripsi_default">Deskripsi : …</string>
+    <string name="pilih_nomor_meja">Pilih Nomor Meja</string>
+    <string name="catatan_hint">Catatan untuk penjual (opsional)</string>
+    <string name="total_semua_label">Total semua</string>
+    <string name="bayar_pesanan">Bayar Pesanan</string>
+
+    <string name="back_button">Back Button</string>
+    <string name="qr_code">QR Code Pembayaran</string>
+
+    <string name="help_button">Help Button</string>
+
+    <string name="empty_state">Empty State</string>
+    <string name="order_icon">Order Icon</string>
+    <string name="arrow_icon">Arrow Icon</string>
+
+    <string name="close_button">Close Button</string>
+    <string name="logo">Logo</string>
+    <string name="share_icon">Share Icon</string>
+    <string name="download_icon">Download Icon</string>
 </resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_menu_admin"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp">
+
+                <TableRow android:layout_marginBottom="4dp">
+                    <TextView android:text="Nama Menu " android:textColor="#000000" />
+                    <TextView android:id="@+id/tv_nama_admin" android:text=": -" android:textStyle="bold" android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="4dp">
+                    <TextView android:text="Harga " android:textColor="#000000" />
+                    <TextView android:id="@+id/tv_harga_admin" android:text=": -" android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="4dp">
+                    <TextView android:text="Kategori " android:textColor="#000000" />
+                    <TextView android:id="@+id/tv_kategori_admin" android:text=": -" android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView android:text="Status " android:textColor="#000000" />
+                    <TextView android:id="@+id/tv_status_admin" android:text=": On" android:textColor="#4CAF50" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_edit_admin"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="#8D7B6D"
+                android:text="Edit"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_hapus_admin"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#D32F2F"
+                android:text="Hapus"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

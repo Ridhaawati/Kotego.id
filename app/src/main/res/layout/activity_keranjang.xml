@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:padding="12dp">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/btnBackCart"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#000000"
+            android:padding="4dp" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Keranjang"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginStart="12dp" />
+
+        <!-- Badge (4) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(4)"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Love Icon -->
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_favorite_border"
+            android:tint="#000000"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp" />
+
+        <!-- Menu Icon -->
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_more"
+            android:tint="#000000"
+            android:padding="4dp" />
+
+    </LinearLayout>
+
+    <!-- RecyclerView untuk daftar keranjang -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:layout_above="@id/bottomCheckout"
+        android:padding="8dp"
+        android:clipToPadding="false" />
+
+    <!-- Bottom Checkout -->
+    <LinearLayout
+        android:id="@+id/bottomCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Checkbox Semua -->
+        <CheckBox
+            android:id="@+id/checkboxAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semua"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Total Harga -->
+        <TextView
+            android:id="@+id/txtTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: Rp0"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Tombol Pesan -->
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:text="Pesan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#000000"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</RelativeLayout>

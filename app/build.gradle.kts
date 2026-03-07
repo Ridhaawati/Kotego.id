@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services")  // ← TAMBAHKAN INI
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -36,12 +36,13 @@ android {
 }
 
 dependencies {
-    // Firebase BoM - TAMBAHKAN INI
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    // Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage")  // ← TAMBAHAN PENTING!
 
     // Dependencies yang sudah ada
     implementation(libs.appcompat)
@@ -52,6 +53,9 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
