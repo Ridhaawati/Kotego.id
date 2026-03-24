@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#000000"
+            android:paddingHorizontal="16dp">
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                app:tint="#FFFFFF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Detail Pesanan"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Pelanggan"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView android:id="@+id/tvNamaPembeli" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nama : Budi Sudarsono" />
+            <TextView android:id="@+id/tvAlamatPembeli" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Alamat : Jl. Merdeka No. 10" />
+            <TextView android:id="@+id/tvHpPembeli" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No. HP : 08123456789" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu Yang Dipesan"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#F9F9F9"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/imgMenu"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder_food"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="15dp">
+                    <TextView android:id="@+id/tvNamaMenu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ayam Chili Padi" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvHargaMenu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 25.000" />
+                    <TextView android:id="@+id/tvKategoriMenu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kategori: Makanan" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="15dp"/>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Pembayaran" android:textStyle="bold"/>
+                <TextView android:id="@+id/tvTotalBayar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="Rp 25.000" android:textColor="#FF5722" android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnSelesai"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#8D7B6D"
+                android:text="Tandai Pesanan Selesai"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

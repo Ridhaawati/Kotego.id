@@ -21,6 +21,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotegoId">
         <activity
+            android:name=".Profil_Admin"
+            android:exported="false" />
+        <activity
+            android:name=".RiwayatLaporan"
+            android:exported="false" />
+        <activity
+            android:name=".PesananAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".detail_pesanan_admin"
+            android:exported="false" />
+        <activity
+            android:name=".ItemNotifikasi"
+            android:exported="false" />
+        <activity
+            android:name=".notifikasi"
+            android:exported="false" />
+        <activity
             android:name=".TambahMenu"
             android:exported="false" />
         <activity
