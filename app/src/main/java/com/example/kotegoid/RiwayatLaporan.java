@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RiwayatLaporan extends AppCompatActivity {
 
@@ -48,19 +49,32 @@ public class RiwayatLaporan extends AppCompatActivity {
 
                                 // Hitung total pendapatan
                                 try {
-                                    String nominal = model.getHarga().replaceAll("[^0-9]", "");
-                                    totalUang += Long.parseLong(nominal);
-                                } catch (Exception e) { }
+                                    // Mengambil string harga, hapus karakter selain angka
+                                    String hargaStr = model.getHarga();
+                                    if (hargaStr != null) {
+                                        String nominal = hargaStr.replaceAll("[^0-9]", "");
+                                        if (!nominal.isEmpty()) {
+                                            totalUang += Long.parseLong(nominal);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                         adapter.notifyDataSetChanged();
-                        tvTotalLaporan.setText("Rp " + String.format("%,d", totalUang).replace(',', '.'));
+
+                        // Format ke Rupiah: titik sebagai pemisah ribuan
+                        String formattedTotal = String.format(Locale.GERMANY, "%,d", totalUang);
+                        tvTotalLaporan.setText("Rp " + formattedTotal);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) { }
                 });
 
-        findViewById(R.id.btnBackRiwayat).setOnClickListener(v -> finish());
+        if (findViewById(R.id.btnBackRiwayat) != null) {
+            findViewById(R.id.btnBackRiwayat).setOnClickListener(v -> finish());
+        }
     }
 }

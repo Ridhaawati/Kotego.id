@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Kotegoid</string>
 
-    <!-- Order Activity -->
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
     <string name="menu_image">Menu Image</string>
     <string name="nama_menu">Nama Menu</string>
     <string name="jumlah_default">Jumlah : 1</string>

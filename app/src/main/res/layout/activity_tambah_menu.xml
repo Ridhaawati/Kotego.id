@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -15,7 +17,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvTitlePage"
@@ -50,7 +53,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/miepedas" />
+                    android:src="@drawable/miepedas"
+                    tools:ignore="ContentDescription" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnPickImage"
@@ -61,7 +65,8 @@
                     android:layout_margin="5dp"
                     android:src="@android:drawable/ic_menu_camera"
                     app:fabCustomSize="40dp"
-                    app:backgroundTint="#FFFFFF"/>
+                    app:backgroundTint="#FFFFFF"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </RelativeLayout>
 
             <EditText
@@ -69,45 +74,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Nama"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
                 android:background="#000000"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etHarga"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Harga"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
                 android:background="#000000"
                 android:layout_marginBottom="10dp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/etKategori"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Kategori"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
                 android:background="#000000"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etStatus"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Status"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
                 android:background="#000000"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etDeskripsi"
@@ -119,7 +135,9 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
                 android:background="#000000"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="30dp"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine" />
 
             <Button
                 android:id="@+id/btnSimpan"
