@@ -1,6 +1,7 @@
 package com.example.kotegoid;
 
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +14,7 @@ public class PesananAdmin extends AppCompatActivity {
 
     private RecyclerView rvPesanan;
     private List<NotifikasiModel> listPesanan;
-    private NotifikasiAdapter adapter; // Kita pakai adapter yang mirip dengan notif
+    private NotifikasiAdapter adapter;
     private DatabaseReference dbRef;
 
     @Override
@@ -28,15 +29,14 @@ public class PesananAdmin extends AppCompatActivity {
         adapter = new NotifikasiAdapter(this, listPesanan);
         rvPesanan.setAdapter(adapter);
 
-        // Ambil data dari Firebase tabel "Pesanan"
-        dbRef = FirebaseDatabase.getInstance().getReference("Pesanan");
+        // Ambil data dari folder "orders" (Bukan "Pesanan") agar sinkron
+        dbRef = FirebaseDatabase.getInstance().getReference("orders");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listPesanan.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     NotifikasiModel model = data.getValue(NotifikasiModel.class);
-                    // Pastikan ID dari Firebase tersimpan ke Model
                     if (model != null) {
                         model.setIdPesanan(data.getKey());
                         listPesanan.add(model);
@@ -46,7 +46,9 @@ public class PesananAdmin extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(PesananAdmin.this, "Gagal memuat data!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

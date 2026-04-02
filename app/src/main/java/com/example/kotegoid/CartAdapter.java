@@ -1,22 +1,20 @@
 package com.example.kotegoid;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.text.NumberFormat;
+import com.bumptech.glide.Glide;
 import java.util.List;
-import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
+    private Context context;
     private List<CartItem> cartList;
     private OnCartChangeListener listener;
 
@@ -24,7 +22,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         void onCartChanged();
     }
 
-    public CartAdapter(List<CartItem> cartList, OnCartChangeListener listener) {
+    public CartAdapter(Context context, List<CartItem> cartList, OnCartChangeListener listener) {
+        this.context = context;
         this.cartList = cartList;
         this.listener = listener;
     }
@@ -32,35 +31,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_cart, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false);
         return new CartViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem cartItem = cartList.get(position);
+        CartItem item = cartList.get(position);
 
-        holder.cartItemName.setText(cartItem.getName());
-        holder.cartItemImage.setImageResource(cartItem.getImageResId());
+        holder.tvName.setText(item.getMenu_name());
+        holder.tvPrice.setText("Rp " + item.getPrice() + " x" + item.getQuantity());
+        holder.checkboxItem.setChecked(item.isChecked());
 
-        // Format harga dengan Rupiah
-        NumberFormat rupiahFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-        String formattedPrice = rupiahFormat.format(cartItem.getPrice());
-        holder.cartItemPrice.setText(formattedPrice);
+        // Load Gambar dari URL Firebase
+        Glide.with(context)
+                .load(item.getImage_url())
+                .placeholder(R.drawable.miepedas)
+                .into(holder.imgItem);
 
-        // Set checkbox
-        holder.checkboxItem.setChecked(cartItem.isChecked());
-
-        // Listener untuk checkbox
-        holder.checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                cartItem.setChecked(isChecked);
-                if (listener != null) {
-                    listener.onCartChanged();
-                }
-            }
+        holder.checkboxItem.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            item.setChecked(isChecked);
+            listener.onCartChanged();
         });
     }
 
@@ -70,16 +61,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
+        ImageView imgItem;
+        TextView tvName, tvPrice;
         CheckBox checkboxItem;
-        ImageView cartItemImage;
-        TextView cartItemName, cartItemPrice;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Sesuaikan dengan ID yang ada di XML item_cart.xml kamu
+            imgItem = itemView.findViewById(R.id.cartItemImage);
+            tvName = itemView.findViewById(R.id.cartItemName);
+            tvPrice = itemView.findViewById(R.id.cartItemPrice);
             checkboxItem = itemView.findViewById(R.id.checkboxItem);
-            cartItemImage = itemView.findViewById(R.id.cartItemImage);
-            cartItemName = itemView.findViewById(R.id.cartItemName);
-            cartItemPrice = itemView.findViewById(R.id.cartItemPrice);
         }
     }
 }

@@ -6,22 +6,18 @@
     android:orientation="vertical"
     android:background="#EEEEEE">
 
-    <!-- ================= TOOLBAR ================= -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@android:color/white"
         android:paddingHorizontal="16dp"
         android:elevation="2dp">
-
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:src="@android:drawable/ic_menu_revert"
-            android:contentDescription="Kembali"/>
-
+            android:src="@android:drawable/ic_menu_revert" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,299 +26,102 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000000"/>
-
         <ImageView
             android:id="@+id/btnSettings"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@android:drawable/ic_menu_manage"
-            android:contentDescription="Pengaturan"/>
+            android:src="@android:drawable/ic_menu_manage" />
     </RelativeLayout>
 
-    <!-- ================= CONTENT ================= -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- ===== PROFILE INFO ===== -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:background="@android:color/white">
-
                 <ImageView
                     android:id="@+id/ivProfilePic"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    android:contentDescription="Foto profil"/>
-
+                    android:src="@android:drawable/ic_menu_myplaces" />
                 <LinearLayout
-                    android:id="@+id/layoutProfileInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/ivProfilePic"
-                    android:layout_toStartOf="@id/btnEdit"
                     android:layout_centerVertical="true"
                     android:orientation="vertical"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp">
-
+                    android:layout_marginStart="16dp">
                     <TextView
+                        android:id="@+id/tvNamaUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ridhawati"
+                        android:text="Memuat nama..."
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
-
                     <TextView
+                        android:id="@+id/tvEmailUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="idha05@gmail.com"
+                        android:text="Memuat email..."
                         android:textSize="13sp"
-                        android:textColor="#757575"
-                        android:layout_marginTop="2dp"/>
+                        android:textColor="#757575"/>
                 </LinearLayout>
-
                 <ImageView
                     android:id="@+id/btnEdit"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@android:drawable/ic_menu_edit"
-                    android:contentDescription="Edit profil"/>
+                    android:src="@android:drawable/ic_menu_edit" />
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="#EEEEEE"/>
+            <View android:layout_width="match_parent" android:layout_height="12dp" android:background="#EEEEEE"/>
 
-            <!-- ===== VOUCHER & DISKON ===== -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@android:color/white"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
-
-                <LinearLayout
-                    android:id="@+id/layoutVoucher"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        android:contentDescription="Voucher"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vocher"
-                        android:textSize="14sp"
-                        android:textColor="#000000"
-                        android:layout_marginStart="12dp"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#E0E0E0"
-                    android:layout_marginVertical="8dp"/>
-
-                <LinearLayout
-                    android:id="@+id/layoutDiskon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_sort_by_size"
-                        android:contentDescription="Diskon"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Diskon"
-                        android:textSize="14sp"
-                        android:textColor="#000000"
-                        android:layout_marginStart="12dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="#EEEEEE"/>
-
-            <!-- ===== LIST MENU ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@android:color/white">
-
-                <!-- Riwayat pesanan -->
                 <LinearLayout
                     android:id="@+id/menuRiwayat"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingHorizontal="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_recent_history"
-                        android:contentDescription="Riwayat"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Riwayat pesanan"
-                        android:textSize="14sp"
-                        android:textColor="#000000"
-                        android:layout_marginStart="16dp"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE"
-                    android:layout_marginStart="60dp"/>
-
-                <!-- Daftar Favorit -->
-                <LinearLayout
-                    android:id="@+id/menuFavorit"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/btn_star"
-                        android:contentDescription="Favorit"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Daftar Favorit"
-                        android:textSize="14sp"
-                        android:textColor="#000000"
-                        android:layout_marginStart="16dp"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE"
-                    android:layout_marginStart="60dp"/>
-
-                <!-- Butuh Bantuan -->
-                <LinearLayout
-                    android:id="@+id/menuBantuan"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_help"
-                        android:contentDescription="Bantuan"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Butuh Bantuan"
-                        android:textSize="14sp"
-                        android:textColor="#000000"
-                        android:layout_marginStart="16dp"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_recent_history" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Riwayat pesanan" android:layout_marginStart="16dp" android:textColor="#000000"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#EEEEEE"/>
-
-            <!-- ===== BUTTON KELUAR ===== -->
             <Button
                 android:id="@+id/btnKeluar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Keluar"
-                android:textSize="15sp"
+                android:backgroundTint="#E8E8E8"
                 android:textColor="#000000"
-                android:textAllCaps="false"
-                android:background="#E8E8E8"
                 android:layout_margin="16dp"/>
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- ================= BOTTOM NAV ================= -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:elevation="8dp"
-        app:itemIconSize="24dp"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"/>
-
 </LinearLayout>

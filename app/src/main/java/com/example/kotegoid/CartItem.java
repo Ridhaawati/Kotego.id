@@ -1,35 +1,21 @@
 package com.example.kotegoid;
 
 public class CartItem {
-    private String name;
-    private int imageResId;
-    private int price;
-    private boolean isChecked;
+    private String menu_id, menu_name, image_url;
+    private long price, total_price;
+    private int quantity;
+    private boolean isChecked = false;
 
-    public CartItem(String name, int imageResId, int price) {
-        this.name = name;
-        this.imageResId = imageResId;
-        this.price = price;
-        this.isChecked = false;
-    }
+    // Wajib ada constructor kosong untuk Firebase
+    public CartItem() {}
 
-    public String getName() {
-        return name;
-    }
+    public String getMenu_id() { return menu_id; }
+    public String getMenu_name() { return menu_name; }
+    public String getImage_url() { return image_url; }
+    public long getPrice() { return price; }
+    public long getTotal_price() { return total_price; }
+    public int getQuantity() { return quantity; }
 
-    public int getImageResId() {
-        return imageResId;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
+    public boolean isChecked() { return isChecked; }
+    public void setChecked(boolean checked) { isChecked = checked; }
 }

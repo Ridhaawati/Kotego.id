@@ -1,48 +1,70 @@
 package com.example.kotegoid;
 
-public class MenuAdmin {
-    private String id;
-    private String nama;
-    private String harga;
-    private String kategori;
-    private String status;
-    private String deskripsi;
-    private String imageUrl;
+import com.google.firebase.database.PropertyName;
 
-    // Constructor kosong (diperlukan jika nanti pakai Firebase)
+public class MenuAdmin {
+    private String menu_id;
+    private String admin_id; // Tambahan dari ERD (FK ke Admin)
+    private String menu_name;
+    private long price; // Pakai long supaya bisa dijumlahkan di Laporan
+    private String category;
+    private int stok;   // Tambahan dari ERD
+    private String discription; // Sesuai typo di ERD kamu: "discription"
+    private String image_url;
+
+    // Constructor kosong wajib untuk Firebase
     public MenuAdmin() {
     }
 
-    // Constructor lengkap
-    public MenuAdmin(String id, String nama, String harga, String kategori, String status, String deskripsi, String imageUrl) {
-        this.id = id;
-        this.nama = nama;
-        this.harga = harga;
-        this.kategori = kategori;
-        this.status = status;
-        this.deskripsi = deskripsi;
-        this.imageUrl = imageUrl;
+    // Constructor lengkap (Opsional, tapi berguna)
+    public MenuAdmin(String menu_id, String menu_name, long price, String category, int stok, String discription) {
+        this.menu_id = menu_id;
+        this.menu_name = menu_name;
+        this.price = price;
+        this.category = category;
+        this.stok = stok;
+        this.discription = discription;
     }
 
-    // Getter dan Setter (Untuk mengambil dan mengisi data)
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    // --- GETTER & SETTER DENGAN ANOTASI AGAR COCOK DENGAN FIREBASE ---
 
-    public String getNama() { return nama; }
-    public void setNama(String nama) { this.nama = nama; }
+    @PropertyName("menu_id")
+    public String getMenu_id() { return menu_id; }
+    @PropertyName("menu_id")
+    public void setMenu_id(String menu_id) { this.menu_id = menu_id; }
 
-    public String getHarga() { return harga; }
-    public void setHarga(String harga) { this.harga = harga; }
+    @PropertyName("menu_name")
+    public String getMenu_name() { return menu_name; }
+    @PropertyName("menu_name")
+    public void setMenu_name(String menu_name) { this.menu_name = menu_name; }
 
-    public String getKategori() { return kategori; }
-    public void setKategori(String kategori) { this.kategori = kategori; }
+    @PropertyName("price")
+    public long getPrice() { return price; }
+    @PropertyName("price")
+    public void setPrice(long price) { this.price = price; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    @PropertyName("category")
+    public String getCategory() { return category; }
+    @PropertyName("category")
+    public void setCategory(String category) { this.category = category; }
 
-    public String getDeskripsi() { return deskripsi; }
-    public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }
+    @PropertyName("stok")
+    public int getStok() { return stok; }
+    @PropertyName("stok")
+    public void setStok(int stok) { this.stok = stok; }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    @PropertyName("discription") // Sesuaikan sama tulisan di ERD-mu
+    public String getDiscription() { return discription; }
+    @PropertyName("discription")
+    public void setDiscription(String discription) { this.discription = discription; }
+
+    @PropertyName("image_url")
+    public String getImage_url() { return image_url; }
+    @PropertyName("image_url")
+    public void setImage_url(String image_url) { this.image_url = image_url; }
+
+    @PropertyName("admin_id")
+    public String getAdmin_id() { return admin_id; }
+    @PropertyName("admin_id")
+    public void setAdmin_id(String admin_id) { this.admin_id = admin_id; }
 }

@@ -1,44 +1,23 @@
 package com.example.kotegoid;
 
+import java.util.List;
+
 public class NotifikasiModel {
-    // Variabel ini harus sesuai dengan field di Firebase
-    private String idPesanan;
-    private String namaMenu;
-    private String harga;
-    private String kategori;
+    private String order_id;
     private String status;
-    private String imageUrl; // Tambahkan jika ada gambar
+    private String user_id;
+    private long total_bayar;
+    private long timestamp;
+    private List<CartItem> items; // List item yang dibeli
 
-    // Constructor Kosong (Wajib ada untuk Firebase)
-    public NotifikasiModel() {
-    }
+    public NotifikasiModel() {} // Wajib untuk Firebase
 
-    // Constructor Lengkap
-    public NotifikasiModel(String idPesanan, String namaMenu, String harga, String kategori, String status, String imageUrl) {
-        this.idPesanan = idPesanan;
-        this.namaMenu = namaMenu;
-        this.harga = harga;
-        this.kategori = kategori;
-        this.status = status;
-        this.imageUrl = imageUrl;
-    }
-
-    // Getter dan Setter
-    public String getIdPesanan() { return idPesanan; }
-    public void setIdPesanan(String idPesanan) { this.idPesanan = idPesanan; }
-
-    public String getNamaMenu() { return namaMenu; }
-    public void setNamaMenu(String namaMenu) { this.namaMenu = namaMenu; }
-
-    public String getHarga() { return harga; }
-    public void setHarga(String harga) { this.harga = harga; }
-
-    public String getKategori() { return kategori; }
-    public void setKategori(String kategori) { this.kategori = kategori; }
+    public String getOrder_id() { return order_id; }
+    public void setIdPesanan(String id) { this.order_id = id; }
 
     public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public String getUser_id() { return user_id; }
+    public long getTotal_bayar() { return total_bayar; }
+    public long getTimestamp() { return timestamp; }
+    public List<CartItem> getItems() { return items; }
 }

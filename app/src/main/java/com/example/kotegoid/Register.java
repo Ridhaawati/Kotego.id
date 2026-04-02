@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,25 +16,21 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
-    EditText edtNama, edtEmail, edtPassword, edtConfirmPassword;
-    Button btnDaftar;
-    TextView btnPunyaAkun;
+    private EditText edtNama, edtEmail, edtPassword, edtConfirmPassword;
+    private Button btnDaftar;
+    private TextView btnPunyaAkun;
 
-    // Firebase
-    FirebaseAuth auth;
-    DatabaseReference dbUsers;
+    private FirebaseAuth auth;
+    private DatabaseReference dbUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
-        // FIREBASE SETUP
         auth = FirebaseAuth.getInstance();
         dbUsers = FirebaseDatabase.getInstance().getReference("users");
 
-        // Hubungkan XML
         edtNama = findViewById(R.id.edtNama);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
@@ -52,59 +47,58 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String nama = edtNama.getText().toString().trim();
-        String email = edtEmail.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
-        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+        // 1. Ambil input dari user
+        String inputNama = edtNama.getText().toString().trim();
+        String inputEmail = edtEmail.getText().toString().trim();
+        String inputPassword = edtPassword.getText().toString().trim();
+        String inputConfirm = edtConfirmPassword.getText().toString().trim();
 
-        // VALIDASI INPUT
-        if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        // VALIDASI
+        if (inputNama.isEmpty() || inputEmail.isEmpty() || inputPassword.isEmpty() || inputConfirm.isEmpty()) {
             Toast.makeText(this, "Semua field wajib diisi!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches()) {
             Toast.makeText(this, "Email tidak valid!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (password.length() < 6) {
+        if (inputPassword.length() < 6) {
             Toast.makeText(this, "Password minimal 6 karakter!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!password.equals(confirmPassword)) {
+        if (!inputPassword.equals(inputConfirm)) {
             Toast.makeText(this, "Konfirmasi password tidak cocok!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // ========== BUAT AKUN DI FIREBASE AUTH ==========
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
+        btnDaftar.setEnabled(false);
 
-                // Ambil UID user
+        // 2. Buat akun di Firebase Auth
+        auth.createUserWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(task -> {
+            if (task.isSuccessful() && auth.getCurrentUser() != null) {
                 String userId = auth.getCurrentUser().getUid();
 
-                // Buat objek user untuk disimpan ke database
-                UserData user = new UserData(nama, email, "customer");
+                // 3. PERBAIKAN DI SINI: Sesuaikan dengan UserData(name, email, role)
+                // Kita masukkan 'inputNama' ke parameter 'name'
+                UserData user = new UserData(inputNama, inputEmail, "customer");
 
-                // Simpan ke Realtime Database berdasarkan UID
                 dbUsers.child(userId).setValue(user).addOnCompleteListener(saveTask -> {
-
                     if (saveTask.isSuccessful()) {
-                        Toast.makeText(Register.this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Register.this, Login.class));
                         finish();
                     } else {
-                        Toast.makeText(Register.this, "Gagal menyimpan data user!", Toast.LENGTH_SHORT).show();
+                        btnDaftar.setEnabled(true);
+                        Toast.makeText(Register.this, "Gagal simpan database!", Toast.LENGTH_SHORT).show();
                     }
-
                 });
 
             } else {
-                Toast.makeText(Register.this,
-                        "Registrasi gagal: " + task.getException().getMessage(),
-                        Toast.LENGTH_LONG).show();
+                btnDaftar.setEnabled(true);
+                Toast.makeText(Register.this, "Gagal: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

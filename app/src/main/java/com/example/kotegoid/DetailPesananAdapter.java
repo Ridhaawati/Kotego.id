@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class DetailPesananAdapter extends RecyclerView.Adapter<DetailPesananAdapter.ViewHolder> {
 
-    private List<OrderItemModel> itemList;
+    // Ganti OrderItemModel menjadi CartItem
+    private List<CartItem> itemList;
 
-    public DetailPesananAdapter(List<OrderItemModel> itemList) {
+    public DetailPesananAdapter(List<CartItem> itemList) {
         this.itemList = itemList;
     }
 
@@ -29,18 +32,18 @@ public class DetailPesananAdapter extends RecyclerView.Adapter<DetailPesananAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        OrderItemModel item = itemList.get(position);
+        CartItem item = itemList.get(position);
 
-        holder.txtNamaMenu.setText(item.namaMenu);
-        holder.txtJumlahHarga.setText(item.jumlah + " x @ Rp " +
-                String.format("%,d", item.harga));
-        holder.txtSubtotal.setText("Subtotal : " +
-                String.format("%,d", item.jumlah * item.harga));
+        // Gunakan getter dari CartItem
+        holder.txtNamaMenu.setText(item.getMenu_name());
+        holder.txtJumlahHarga.setText(item.getQuantity() + " x @ Rp " + String.format("%,d", item.getPrice()));
+        holder.txtSubtotal.setText("Subtotal : Rp " + String.format("%,d", item.getTotal_price()));
 
-        // Set image jika ada (gunakan Glide atau Picasso)
-        // Glide.with(holder.itemView.getContext())
-        //     .load(item.imageUrl)
-        //     .into(holder.imgMenuItem);
+        // Load image asli dari Firebase URL menggunakan Glide
+        Glide.with(holder.itemView.getContext())
+                .load(item.getImage_url())
+                .placeholder(R.drawable.miepedas)
+                .into(holder.imgMenuItem);
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.kotegoid;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent; // Tambahkan import ini
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide; // Import Glide
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class MenuAdapterAdmin extends RecyclerView.Adapter<MenuAdapterAdmin.MenuViewHolder> {
@@ -35,46 +38,57 @@ public class MenuAdapterAdmin extends RecyclerView.Adapter<MenuAdapterAdmin.Menu
     public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
         MenuAdmin menu = listMenu.get(position);
 
-        holder.tvNama.setText(": " + menu.getNama());
-        holder.tvHarga.setText(": " + menu.getHarga());
-        holder.tvKategori.setText(": " + menu.getKategori());
-        holder.tvStatus.setText(": " + menu.getStatus());
+        // 1. Set Teks (Nama, Harga, Kategori)
+        holder.tvNama.setText(": " + menu.getMenu_name());
+        holder.tvHarga.setText(": Rp " + String.valueOf(menu.getPrice()));
+        holder.tvKategori.setText(": " + menu.getCategory());
+        holder.tvStatus.setText(": Tersedia");
 
-        // Update Tombol Edit untuk Pindah ke Halaman TambahMenu (Mode Edit)
+        // 2. Tampilkan Gambar menggunakan Glide
+        if (menu.getImage_url() != null && !menu.getImage_url().isEmpty()) {
+            Glide.with(context)
+                    .load(menu.getImage_url())
+                    .placeholder(R.drawable.miepedas) // Gambar saat proses loading
+                    .error(R.drawable.miepedas)       // Gambar jika link rusak
+                    .into(holder.imgMenu);
+        } else {
+            // Jika tidak ada URL gambar, pakai gambar placeholder
+            holder.imgMenu.setImageResource(R.drawable.miepedas);
+        }
+
+        // 3. Tombol Edit
         holder.btnEdit.setOnClickListener(v -> {
             Intent intent = new Intent(context, TambahMenu.class);
-            // Mengirim data menu agar muncul di form edit
-            intent.putExtra("nama", menu.getNama());
-            intent.putExtra("harga", menu.getHarga());
-            intent.putExtra("kategori", menu.getKategori());
-            intent.putExtra("status", menu.getStatus());
-            intent.putExtra("deskripsi", menu.getDeskripsi()); // Jika ada deskripsi
+            intent.putExtra("menu_id", menu.getMenu_id());
+            intent.putExtra("menu_name", menu.getMenu_name());
+            intent.putExtra("price", menu.getPrice());
+            intent.putExtra("category", menu.getCategory());
+            intent.putExtra("discription", menu.getDiscription());
+            // Kirim link gambar juga agar di halaman edit gambarnya muncul
+            intent.putExtra("image_url", menu.getImage_url());
             context.startActivity(intent);
         });
 
+        // 4. Tombol Hapus
         holder.btnHapus.setOnClickListener(v -> {
-            showDeleteDialog(position, menu.getNama());
+            showDeleteDialog(menu.getMenu_id(), menu.getMenu_name());
         });
     }
 
-    private void showDeleteDialog(int position, String namaMenu) {
+    private void showDeleteDialog(String menuId, String namaMenu) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Hapus Menu");
-        builder.setMessage("Hapus Menu " + namaMenu + " ini ?");
+        builder.setMessage("Hapus Menu " + namaMenu + " ini secara permanen?");
 
         builder.setPositiveButton("Ya", (dialog, which) -> {
-            listMenu.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, listMenu.size());
-            Toast.makeText(context, namaMenu + " Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+            FirebaseDatabase.getInstance().getReference("menu").child(menuId)
+                    .removeValue().addOnSuccessListener(unused -> {
+                        Toast.makeText(context, namaMenu + " Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                    });
         });
 
-        builder.setNegativeButton("Tidak", (dialog, which) -> {
-            dialog.dismiss();
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        builder.setNegativeButton("Tidak", (dialog, which) -> dialog.dismiss());
+        builder.create().show();
     }
 
     @Override
